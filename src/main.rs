@@ -1,5 +1,6 @@
 extern crate clap;
 use clap::Parser;
+use std::io::Write;
 mod suffix;
 use suffix::suffixer;
 
@@ -27,5 +28,16 @@ fn main() {
             std::process::exit(2);
         }
     };
-    println!("{}", result);
+
+    let mut stdout = std::io::stdout();
+
+    match writeln!(stdout, "{}", &result) { // writeln because we can properly handle errors
+        Err(e) => { // match errors
+            if e.kind() != std::io::ErrorKind::BrokenPipe { // if it isnt a broken pipe (the reason this is necessary)
+                eprintln!("{}", e); // print the error
+                std::process::exit(1); // and exit
+            }
+        }
+        Ok(o) => o, // basaically just unwrap but errors are handled above
+    };
 }
