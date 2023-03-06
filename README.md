@@ -1,4 +1,4 @@
-# ussy
-simple suffixer. the name is a joke aside from the fact that the default suffix is 'ussy'
+# ruffix
+Simple suffixer written in rust
 
-usage: ussy -w word -s suffix: optional
+usage: ruffix -w word -s suffix
