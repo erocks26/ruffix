@@ -8,10 +8,10 @@ use suffix::suffixer;
 #[clap(author, version, about, long_about = None)]
 struct Cli {
     /// word to prepend <SUFFIX> onto
-    #[clap(short,long,default_value = "sus")]
+    #[clap(short,long)]
     word: String,
     /// what to append to <WORD>
-    #[clap(short,long,default_value = "ussy")]
+    #[clap(short,long)]
     suffix: String,
 }
 
